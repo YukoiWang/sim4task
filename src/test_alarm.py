@@ -28,14 +28,14 @@ def clear_log_file():
         with open(LOG_FILE, "w", encoding="utf-8") as f:
             f.write("")  # 清空
     except Exception as e:
-        print(f"[ScriptDebug] ❌ Failed to clear log file: {e}")
+        print(f"[ScriptDebug] Failed to clear log file: {e}")
 
 def log_to_file(message: str):
     try:
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(message + "\n")
     except Exception as e:
-        print(f"[ScriptDebug] ❌ Failed to write log file: {e}")
+        print(f"[ScriptDebug] Failed to write log file: {e}")
 
 
 # ================= CONFIGURATION =================
@@ -354,7 +354,7 @@ def native_find_sim(role_or_name: str, output: Any = None) -> Optional[Any]:
             if sim_instance:
                 found_sim_instance = sim_instance
                 if output:
-                    output(f"   [FindSim] ✅ Found Sim Instance: {found_sim_instance.first_name}")
+                    output(f"   [FindSim]  Found Sim Instance: {found_sim_instance.first_name}")
                 break
 
     if found_sim_instance is None and output:
