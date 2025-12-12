@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gameplay">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TheSims4ScriptModBuilder/game/zip/gameplay/simulation.zip!/" />
+      <root url="jar://$PROJECT_DIR$/TheSims4ScriptModBuilder/game/zip/gameplay/base.zip!/" />
+      <root url="jar://$PROJECT_DIR$/TheSims4ScriptModBuilder/game/zip/gameplay/core.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

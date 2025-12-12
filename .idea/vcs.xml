@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/Sims4CommunityLibrary" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TS4ControlAnySim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TheSims4ScriptModBuilder" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/s4cl-template-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sim4task" vcs="Git" />
+  </component>
+</project>
