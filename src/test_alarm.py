@@ -53,31 +53,36 @@ SCENARIOS = {
         # ("cook",   "world", "stove"),
         # ("eat",    "world", "food"),
         ("read",   "world", "bookshelf"),
-        ("watch",    "world", "tv")
+        ("watch",    "world", "tv"),
+        ("sleep", "object", "bed")
         # ("career",   "self",  None)
     ],
     "Mom": [
         # ("empty",  "world", "trash"),
-        ("shower", "world", "shower"),
+        ("chat", "sim", None),
         # ("eat",    "world", "food"),
         ("watch",  "world", "tv"),
-        ("read",    "world", "bookshelf")
+        ("read",    "world", "bookshelf"),
+        ("sleep", "object", "bed")
         # ("career",   "self",  None)
     ],
     "Son": [
-        ("shower", "world", "shower"),
+        ("chat", "sim", None),
         ("practice", "world", "violin"),
         # ("eat",      "world", "food"),
-        ("read",    "world", "bookshelf")
+        ("read",    "world", "bookshelf"),
+        ("sleep", "object", "bed")
 
     ],
     "Daughter": [
-        ("shower",   "world", "shower"),
+        ("practice", "world", "violin"),
         ("read",   "world", "bookshelf"),
+        ("shower",   "world", "shower"),
+        ("sleep", "object", "bed")
         # ("eat",    "world", "food"),
         # ("dance",  "world", "stereo"),
         # ("paint",  "world", "easel")
-        ("practice", "world", "violin"),
+
         # ("watch",  "world", "tv")
     ]
 }
@@ -104,15 +109,15 @@ def debug_test_route(sim, obj):
         )
 
         if result:
-            log(f"   [RouteTest] ✅ Sim CAN reach target tile at {front_pos}")
+            log(f"   [RouteTest]  Sim CAN reach target tile at {front_pos}")
             return True
         else:
             fail_reason = sim.routing_context.get_first_blocking_reason()
-            log(f"   [RouteTest] ❌ Route FAILED. Reason = {fail_reason}")
+            log(f"   [RouteTest]  Route FAILED. Reason = {fail_reason}")
             return False
 
     except Exception as e:
-        log(f"   [RouteTest] ❌ Exception: {e}")
+        log(f"   [RouteTest]  Exception: {e}")
         return False
 
 # ================= GLOBAL CONTEXT =================
@@ -251,7 +256,7 @@ def run_tick(_):
             #     if sim.queue.running:
             #         current_interaction = str(sim.queue.running)
             #
-            #     log(f"[{role}] ⏳ Sim is busy performing '{current_interaction}'. Waiting...")
+            #     log(f"[{role}] Sim is busy performing '{current_interaction}'. Waiting...")
             #     continue
             # # if len(sim.queue) > 2:
             # #     log(f"[{role}] Queue too long ({len(sim.queue)}) -> Skip this tick")
@@ -264,15 +269,15 @@ def run_tick(_):
 
                 if is_interaction_from_script(current_running_interaction):
                     sim_is_busy_with_script = True
-                    log(f"[{role}] ⏳ Sim is busy performing OUR SCRIPTED ACTION: '{str(current_running_interaction)}'. Waiting...")
+                    log(f"[{role}]  Sim is busy performing OUR SCRIPTED ACTION: '{str(current_running_interaction)}'. Waiting...")
                     continue
                 if is_passive_or_idle_interaction(current_running_interaction):
 
-                    log(f"[{role}] ℹ️ Running Passive Action: '{str(current_running_interaction)}'. Ignoring...")
-                    # **关键：直接跳到 Sim Idle 状态的后续代码**
+                    log(f"[{role}] ℹRunning Passive Action: '{str(current_running_interaction)}'. Ignoring...")
+
                 else:
-                    log(f"[{role}] ⏳ Sim is busy performing NON-PASSIVE action: '{str(current_running_interaction)}'. Waiting...")
-                    continue # 忙于重要系统动作，跳过本 tick
+                    log(f"[{role}] Sim is busy performing NON-PASSIVE action: '{str(current_running_interaction)}'. Waiting...")
+                    continue
 
             #
             # if sim.queue is not None and len(sim.queue) > 0:
@@ -280,8 +285,8 @@ def run_tick(_):
             #     next_interaction_in_queue = sim.queue[0]
             #
             #     if not is_interaction_from_script(next_interaction_in_queue) and not is_passive_or_idle_interaction(next_interaction_in_queue):
-            #         log(f"[{role}] ⏳ Queue has non-passive system action: '{str(next_interaction_in_queue)}'. Waiting for Sim to resolve...")
-            #         continue # 队列中有重要动作，跳过本 tick
+            #         log(f"[{role}]  Queue has non-passive system action: '{str(next_interaction_in_queue)}'. Waiting for Sim to resolve...")
+            #         continue
 
             log(f"[{role}] Sim Idle, Ready For Action")
 
@@ -353,7 +358,7 @@ def native_find_sim(role_or_name: str, output: Any = None) -> Optional[Any]:
                 break
 
     if found_sim_instance is None and output:
-        output(f"   [FindSim] ❌ Sim Instance '{target_name}' not found (Not Loaded).")
+        output(f"   [FindSim] Sim Instance '{target_name}' not found (Not Loaded).")
 
     return found_sim_instance
 
