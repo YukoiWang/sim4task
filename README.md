@@ -1,6 +1,6 @@
 My main codes are in the ./src/test_alarm.py. 
 
-### Implementation Logic & Core Architecture
+# Implementation Logic & Core Architecture
 I utilized a State Machine combined with a Polling design pattern to orchestrate Sim behaviors.
 1. Global Context Management
 The script uses a singleton Context class to manage the global state of the simulation:
@@ -19,7 +19,7 @@ Execution: It retrieves the instruction pointed to by the Cursor and attempts to
 Retry: If an interaction push fails (e.g., route blocked), the failure count increments.
 Deferral: If a specific task fails 10 consecutive times, the script moves that task to the end of the queue.
 Cooldown: To prevent infinite loops on broken interactions, the deferred task enters a 30 in-game minute cooldown period during which it will be skipped.
-### Functiona Introbuction
+# Functiona Introbuction
 ## Core Control
 1. run_tick(_)
 * Function: The "Heart" of the script. Runs periodically via the alarm.
